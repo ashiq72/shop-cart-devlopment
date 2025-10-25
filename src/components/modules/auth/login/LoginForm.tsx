@@ -9,6 +9,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import ReCAPTCHA from "react-google-recaptcha";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
@@ -37,6 +38,10 @@ const LoginForm = () => {
     } catch (error: any) {
       console.error(error);
     }
+  };
+
+  const handleReCaptcha = (value: string | any) => {
+    console.log("Captcha value:", value);
   };
   return (
     <div className="border-2 border-gray-300 rounded-xl max-w-md w-full p-5">
@@ -74,6 +79,13 @@ const LoginForm = () => {
               </FormItem>
             )}
           />
+          <div className="flex mt-3 w-full">
+            <ReCAPTCHA
+              sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_CLIENT_KEY ?? ""}
+              onChange={handleReCaptcha}
+              className="mx-auto"
+            />
+          </div>
 
           <Button type="submit" className="mt-5 w-full">
             {isSubmitting ? "Logging" : "Login"}
