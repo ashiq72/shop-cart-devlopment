@@ -15,14 +15,15 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { loginSchema } from "./loginValidation";
-import { loginUser } from "@/services/AuthService";
+import { loginUser, reCaptchaTokenVerification } from "@/services/AuthService";
 import { toast } from "sonner";
+import { useState } from "react";
 
 const LoginForm = () => {
   const form = useForm({
     resolver: zodResolver(loginSchema),
   });
-
+  const [reCaptchaStatus, setReCaptchaStatus] = useState(false);
   const {
     formState: { isSubmitting },
   } = form;
@@ -40,8 +41,15 @@ const LoginForm = () => {
     }
   };
 
-  const handleReCaptcha = (value: string | any) => {
-    console.log("Captcha value:", value);
+  const handleReCaptcha = async (value: string | null) => {
+    try {
+      const res = await reCaptchaTokenVerification(value!);
+      if (res?.success) {
+        setReCaptchaStatus(true);
+      }
+    } catch (err: any) {
+      console.error(err);
+    }
   };
   return (
     <div className="border-2 border-gray-300 rounded-xl max-w-md w-full p-5">
@@ -87,7 +95,11 @@ const LoginForm = () => {
             />
           </div>
 
-          <Button type="submit" className="mt-5 w-full">
+          <Button
+            type="submit"
+            disabled={reCaptchaStatus ? false : true}
+            className="mt-5 w-full"
+          >
             {isSubmitting ? "Logging" : "Login"}
           </Button>
         </form>
