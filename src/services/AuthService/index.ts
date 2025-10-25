@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use server";
 
+import { cookies } from "next/headers";
 import { FieldValues } from "react-hook-form";
 
 export const registerUser = async (userData: FieldValues) => {
@@ -27,7 +28,16 @@ export const loginUser = async (userData: FieldValues) => {
       },
       body: JSON.stringify(userData),
     });
-    return res.json();
+
+    const result = await res.json();
+
+    const storeCookies = await cookies();
+
+    if (result.success) {
+      storeCookies.set("accessToken", result.data.accessToken);
+    }
+
+    return result;
   } catch (error: any) {
     return Error(error);
   }
