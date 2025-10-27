@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🛍️ Poptocart
 
-## Getting Started
+**Poptocart** is a modern multi-vendor e-commerce platform where anyone can **create their own online shop** and **sell products**, while customers can **browse, add to cart, and purchase** from multiple stores — all in one place.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🚀 Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 🧑‍💼 For Sellers
+- Create and manage your own store
+- Add, update, and delete products easily
+- Real-time sales dashboard & analytics
+- Manage inventory, pricing, and orders
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 🛒 For Buyers
+- Browse products from multiple vendors
+- Add items to cart and checkout securely
+- Search and filter by category, price, or brand
+- Track order status and history
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### ⚙️ Platform Features
+- Secure authentication (JWT / OAuth)
+- Product image uploads
+- Responsive and mobile-friendly UI
+- Role-based user system (Admin / Seller / Buyer)
+- Integrated payment gateway (Stripe / SSLCOMMERZ)
+- RESTful / GraphQL API for scalability
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🧩 Tech Stack
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Category | Technologies |
+|-----------|---------------|
+| **Frontend** | Next.js / React, Tailwind CSS, TypeScript |
+| **Backend** | Node.js / Express.js / NestJS |
+| **Database** | MongoDB / PostgreSQL |
+| **Authentication** | JWT / NextAuth |
+| **Cloud & Hosting** | AWS / Vercel / Render |
+| **Payment** | Stripe / SSLCOMMERZ |
+| **Others** | Prisma / Mongoose, Cloudinary for media upload |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 🛠️ Installation
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/your-username/poptocart.git
