@@ -1,5 +1,11 @@
+import CreateShopForm from "@/components/modules/shop/create-shop/CreateShopForm";
+
 const CreateShopPage = () => {
-  return <div>CreateShopPage</div>;
+  return (
+    <div>
+      <CreateShopForm />
+    </div>
+  );
 };
 
 export default CreateShopPage;
