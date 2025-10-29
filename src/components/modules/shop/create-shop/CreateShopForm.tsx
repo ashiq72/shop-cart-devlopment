@@ -19,9 +19,10 @@ import { useState } from "react";
 // import { createShop } from "@/services/Shop";
 import { toast } from "sonner";
 import NMImageUploader from "@/components/ui/core/NMImageUploader";
+import ImagePreviewer from "@/components/ui/core/NMImageUploader/ImagesPreviewer";
 
 export default function CreateShopForm() {
-  const [imageFiles, setImageFiles] = useState<File[] | []>([]);
+  const [imagesFiles, setImagesFiles] = useState<File[] | []>([]);
   const [imagePreview, setImagePreview] = useState<string[] | []>([]);
 
   const form = useForm();
@@ -229,8 +230,18 @@ export default function CreateShopForm() {
               />
             </div>
 
+            <ImagePreviewer
+              setImagesFiles={setImagesFiles}
+              imagePreview={imagePreview}
+              setImagePreview={setImagePreview}
+              className="mt-8"
+            />
             <div className="mt-8">
-              <NMImageUploader />
+              <NMImageUploader
+                setImagesFiles={setImagesFiles}
+                setImagePreview={setImagePreview}
+                label="Upload Logo"
+              />
             </div>
           </div>
 

@@ -1,32 +1,53 @@
 import { useState } from "react";
 import { Input } from "../../input";
+import Image from "next/image";
+import { cn } from "@/lib/utils";
 
-const NMImageUploader = () => {
-  const [imageFiles, setImageFiles] = useState<File[] | []>([]);
+type TImageUploader = {
+  label?: string;
+  className?: string;
+  setImagesFiles: React.Dispatch<React.SetStateAction<File[]>>;
+  setImagePreview: React.Dispatch<React.SetStateAction<string[]>>;
+};
 
+const NMImageUploader = ({
+  label = "Upload Images",
+  className,
+  setImagesFiles,
+  setImagePreview,
+}: TImageUploader) => {
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.files);
-
     const file = e.target.files![0];
-    setImageFiles((prev) => [...prev, file]);
+    setImagesFiles((prev) => [...prev, file]);
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagePreview((prev) => [...prev, reader.result as string]);
+      };
+      reader.readAsDataURL(file);
+    }
+    e.target.value = "";
   };
   return (
-    <div className="relative w-36 h-36 rounded-md overflow-hidden border border-dashed border-gray-300">
-      <Input
-        onChange={handleImageChange}
-        type="file"
-        multiple
-        accept="image/*"
-        id="image-uploader"
-        className="object-cover w-full h-full"
-      />
-      <label
-        className="bg-red-300 hover:bg-red-400 absolute -top-0 -right-0 w-6 h-6 p-0 rounded-full"
-        htmlFor="image-uploader"
-      >
-        Upload logo
-      </label>
-    </div>
+    <>
+      <div className={cn("flex flex-col items-center w-full gap-4", className)}>
+        <Input
+          onChange={handleImageChange}
+          id="image-upload"
+          type="file"
+          multiple
+          accept="image/*"
+          className="hidden"
+        />
+
+        <label
+          htmlFor="image-upload"
+          className="w-full h-36 md:size-36 flex items-center justify-center border-2 border-dashed border-gray-300 rounded-md cursor-pointer text-center text-sm text-gray-500 hover:bg-gray-50 transition"
+        >
+          {label}
+        </label>
+      </div>
+    </>
   );
 };
 
