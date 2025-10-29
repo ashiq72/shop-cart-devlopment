@@ -37,16 +37,16 @@ export default function CreateShopForm() {
       .map((service: string) => service.trim())
       .filter((service: string) => service !== "");
 
-    // const modifiedData = {
-    //   ...data,
-    //   servicesOffered: servicesOffered,
-    //   establishedYear: Number(data?.establishedYear),
-    // };
+    const modifiedData = {
+      ...data,
+      servicesOffered: servicesOffered,
+      establishedYear: Number(data?.establishedYear),
+    };
 
     // try {
     //   const formData = new FormData();
     //   formData.append("data", JSON.stringify(modifiedData));
-    //   formData.append("logo", imageFiles[0] as File);
+    //   formData.append("logo", imagesFiles[0] as File);
 
     //   const res = await createShop(formData);
 
@@ -230,19 +230,22 @@ export default function CreateShopForm() {
               />
             </div>
 
-            <ImagePreviewer
-              setImagesFiles={setImagesFiles}
-              imagePreview={imagePreview}
-              setImagePreview={setImagePreview}
-              className="mt-8"
-            />
-            <div className="mt-8">
-              <NMImageUploader
+            {imagePreview.length > 0 ? (
+              <ImagePreviewer
                 setImagesFiles={setImagesFiles}
+                imagePreview={imagePreview}
                 setImagePreview={setImagePreview}
-                label="Upload Logo"
+                className="mt-6"
               />
-            </div>
+            ) : (
+              <div className="mt-6">
+                <NMImageUploader
+                  setImagesFiles={setImagesFiles}
+                  setImagePreview={setImagePreview}
+                  label="Upload Logo"
+                />
+              </div>
+            )}
           </div>
 
           <Button type="submit" className="mt-5 w-full">
