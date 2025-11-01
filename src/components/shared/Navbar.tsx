@@ -24,10 +24,10 @@ export default function Navbar() {
   return (
     <header className="border-b w-full">
       <div className="container flex justify-between items-center mx-auto h-16 px-3">
-        <h1 className="text-2xl font-black flex items-center">
+        <Link href="/" className="text-2xl font-black flex items-center">
           <Logo />
           Next Mart
-        </h1>
+        </Link>
         <div className="max-w-md  flex-grow">
           <input
             type="text"
